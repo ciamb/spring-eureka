@@ -2,34 +2,32 @@
 Repo dove configuro un server eureka (discovery service)
 
 
-What is the use of Eureka server in Microservices
-AUTHOR:SOUMITRA - WHAT IS THE USE OF EUREKA SERVER IN MICROSERVICES
-Here I will explain what is Eureka Server and why do we need to use Eureka server in Microservices Architecture?
+Qual è l'utilizzo di Eureka Server in Microservices 
+AUTORE: SOUMITRA - QUAL È L'UTILIZZO DI EUREKA SERVER IN MICROSERVICES 
+Qui spiegherò cos'è Eureka Server e perché dobbiamo utilizzare Eureka server nell'architettura dei Microservices.
 
-What is Eureka server?
-The Eureka server is nothing but an implementation of service discovery pattern, where microservices can register themselves so others can discover them.
+Cos'è Eureka Server? Il server Eureka non è altro che un'implementazione del discovery pattern service (https://microservices.io/patterns/server-side-discovery.html), in cui i microservices possono registrarsi in modo che gli altri possano scoprirli.
 
-This server holds information about the client service applications. Each microservice registers into Eureka server and eureka server knows all client applications running on each port and IP address. This server is also known as discovery server.
+Questo server contiene informazioni sulle applicazioni client di servizio. Ogni microservice si registra nel server Eureka e il server Eureka conosce tutte le applicazioni client in esecuzione su ciascuna porta e indirizzo IP. Questo server è anche noto come server di discovery.
 
-The @EnableEurekaServer annotation is used to make your Spring Boot application acts as a Eureka Server.
+L'annotazione @EnableEurekaServer viene utilizzata per fare in modo che la tua applicazione Spring Boot agisca come un Eureka Server.
 
-The Eureka Server is a Netflix OSS product, and Spring Cloud offers a declarative way to register and invoke services by Java annotation.
+Il server Eureka è un prodotto Netflix OSS e Spring Cloud offre un modo dichiarativo per registrare e invocare servizi tramite annotazione Java.
 
-Why do we need Eureka server?
-To understand why the Eureka server is needed in microservice architecture, let’s understand how one service calls another service, usually using REST endpoint for communication.
+Perché abbiamo bisogno di Eureka Server? Per capire perché è necessario il server Eureka nell'architettura dei microservices, capiamo come un servizio chiama un altro servizio, di solito utilizzando un endpoint REST per la comunicazione.
 
-Say we need to call the employee payroll service to get payroll information for an employee. The payroll service is deployed on the host localhost and on 9000 port. Therefore, we get this payroll information for an employee by passing the employee primary key. So we just call the following:
+Supponiamo che dobbiamo chiamare il servizio di elaborazione delle buste paga per ottenere le informazioni sulla busta paga di un dipendente. Il servizio di elaborazione delle buste paga è distribuito sull'host localhost e sulla porta 9000. Pertanto, otteniamo queste informazioni sulla busta paga di un dipendente passando la chiave primaria del dipendente. Quindi chiamiamo semplicemente quanto segue:
 
-http://localhost:9000/payroll/245676 or http://127.0.0.1/payroll/245676
+http://localhost:9000/payroll/245676 o http://127.0.0.1/payroll/245676
 
-Where localhost or 127.0.0.1 is the hostname or IP address and payroll is the payroll service context, 245676 is the employee’s primary key.
+Dove localhost o 127.0.0.1 è il nome host o l'indirizzo IP e payroll è il contesto del servizio di buste paga, 245676 è la chiave primaria del dipendente.
 
-But wait, this is only possible when you know the hostname or IP address beforehand, then you can configure your URL. So here the hostname or IP address is a constraint or a pain point.
+Ma aspetta, questo è possibile solo quando conosci il nome host o l'indirizzo IP in anticipo, quindi puoi configurare il tuo URL. Quindi, qui il nome host o l'indirizzo IP è un vincolo o un punto critico.
 
-If the IP address of a server/container is fixed, then you can use this approach to easily call your service, but what happens when your IP address and hostname are unpredictable?
+Se l'indirizzo IP di un server/container è fisso, allora puoi utilizzare questo approccio per chiamare facilmente il tuo servizio, ma cosa succede quando il tuo indirizzo IP e il nome host sono imprevedibili?
 
-Nowadays, on a cloud platform, it is obvious that all servers or containers use dynamic IPs for autoscaling. And the interesting thing is that in microservices architecture, the key principle is that your service can autoscale as per load, so cloud platforms are ideal for microservices.
+Oggi, su una piattaforma cloud, è ovvio che tutti i server o i container utilizzino IP dinamici per il ridimensionamento automatico. E la cosa interessante è che nell'architettura dei microservices, il principio chiave è che il tuo servizio può ridimensionarsi automaticamente in base al carico, quindi le piattaforme cloud sono ideali per i microservices.
 
-Therefore as a result, putting dependent service’s IP address in the config file is not a solution. We need a more sophisticated technique to identify the service, and Eureka server steps in here.
+Di conseguenza, inserire l'indirizzo IP del servizio dipendente nel file di configurazione non è una soluzione. Abbiamo bisogno di una tecnica più sofisticata per identificare il servizio e qui entra in gioco il server Eureka.
 
-Thanks for reading.
+Grazie per la lettura.
